@@ -3,9 +3,10 @@ package lesson1;
 import java.util.*;
 
 public class FileMain {
+    public static final String fileIn = "in.txt";
+    public static final String fileOut = "out.txt";
+
     public static void main(String[] args) {
-        final String fileIn = "in.txt";
-        final String fileOut = "out.txt";
         //создаем двухуровневый список
         List<List<String>> arrListStr = new ArrayList<>();
 
