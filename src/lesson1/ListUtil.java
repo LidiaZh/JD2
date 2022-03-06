@@ -1,13 +1,13 @@
 package lesson1;
 
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-class SortedList {
+class ListUtil {
 
-    public static void sortedList(ArrayList<ArrayList<String>> arrListStr) {
+    public static void sortedList(List<List<String>> arrListStr) {
         //создаем компоратор для стравнения строк
-        final Comparator<ArrayList<String>> comparator = (pList1, pList2) -> {
+        final Comparator<List<String>> comparator = (pList1, pList2) -> {
             for (int i = 0; i < arrListStr.get(0).size(); i++) {
                 if (pList1.get(i).compareTo(pList2.get(i)) == 0) {
                     return pList1.get(++i).compareTo(pList2.get(++i));
@@ -20,8 +20,8 @@ class SortedList {
     }
 
     //вывод на экран
-    public static void printList(ArrayList<ArrayList<String>> arrListStr) {
-        for (ArrayList<String> arr : arrListStr) {
+    public static void printList(List<List<String>> arrListStr) {
+        for (List<String> arr : arrListStr) {
             for (String m : arr) {
                 System.out.print(" " + m);
             }

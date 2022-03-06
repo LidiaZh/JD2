@@ -4,25 +4,25 @@ import java.util.*;
 
 public class FileMain {
     public static void main(String[] args) {
-        final String file1 = "in.txt";
-        final String file2 = "out.txt";
+        final String fileIn = "in.txt";
+        final String fileOut = "out.txt";
         //создаем двухуровневый список
-        ArrayList<ArrayList<String>> arrListStr = new ArrayList<>();
+        List<List<String>> arrListStr = new ArrayList<>();
 
         //чтение из файла и запись данных в список
-        FileMethod.readInFile(file1, arrListStr);
+        FileUtils.readInFile(fileIn, arrListStr);
 
         //вывод значений списка, полученных из файла
-        SortedList.printList(arrListStr);
+        ListUtil.printList(arrListStr);
 
         //сортировка списка
-        SortedList.sortedList(arrListStr);
+        ListUtil.sortedList(arrListStr);
         System.out.println();
         //вывод отсортированного списка на экран
-        SortedList.printList(arrListStr);
+        ListUtil.printList(arrListStr);
 
         //запись в файл
-        FileMethod.writeOutFile(file2, arrListStr);
+        FileUtils.writeOutFile(fileOut, arrListStr);
     }
 }
 

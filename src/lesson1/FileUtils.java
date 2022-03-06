@@ -2,20 +2,24 @@ package lesson1;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public class FileMethod {
+public class FileUtils {
 
     //чтение из файла
-    public static void readInFile(String file1, ArrayList<ArrayList<String>> arrListStr) {
-        try (final BufferedReader fileIn = new BufferedReader(new FileReader(file1))) {
+    public static void readInFile(String file, List<List<String>> arrListStr) {
+        final String PARAGRAPH = "\n";
+        final String TAB = "\t";
+        final String CARRIAGE = "\r";
+        try (final BufferedReader fileIn = new BufferedReader(new FileReader(file))) {
             StringBuilder st = new StringBuilder(); //строка(слово) до знака табуляции
-            ArrayList<String> arrListCol = new ArrayList<>(); //строка списка до абзаца
+            List<String> arrListCol = new ArrayList<>(); //строка списка до абзаца
             int c;
             boolean paragraph;
             boolean tab;
             while ((c = fileIn.read()) != -1) {
-                paragraph = Character.toString(c).equals("\n");
-                tab = Character.toString(c).equals("\t");
+                paragraph = PARAGRAPH.equals(Character.toString(c));
+                tab = TAB.equals(Character.toString(c));
                 //проверка на табуляцию и абзац
                 if (!tab && !paragraph) {
                     st.append((char) c); //накапливаем строку(слово) до табуляции или абзаца
@@ -28,7 +32,7 @@ public class FileMethod {
                     st = new StringBuilder(); //обнуляем строку(слово)
                 }
             }
-            st.append("\r"); //перевод каретки на случай, если нет абзаца в конце
+            st.append(CARRIAGE); //перевод каретки на случай, если нет абзаца в конце
             //запись последних строк на случай, если нет азаца в конце
             arrListCol.add(String.valueOf(st));
             arrListStr.add(arrListCol);
@@ -38,9 +42,9 @@ public class FileMethod {
     }
 
     //запись в файл
-    public static void writeOutFile(String file2, ArrayList<ArrayList<String>> arrListStr) {
-        try (BufferedWriter fileOut = new BufferedWriter(new FileWriter(file2))) {
-            for (ArrayList<String> arr : arrListStr) {
+    public static void writeOutFile(String file, List<List<String>> arrListStr) {
+        try (BufferedWriter fileOut = new BufferedWriter(new FileWriter(file))) {
+            for (List<String> arr : arrListStr) {
                 for (String m : arr) {
                     fileOut.write(m);
                 }
